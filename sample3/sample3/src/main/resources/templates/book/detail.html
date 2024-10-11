@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/mylayout}">
+
+<div class="content" layout:fragment="content">
+    <div class="col-6" style="margin-left:250px;">
+        <h2>도서 상세 페이지</h2>
+        <table class="table">
+            <tr>
+                <th>번호</th>
+                <td th:text="${book.no}"></td>
+            </tr>
+            <tr>
+                <th>제목</th>
+                <td th:text="${book.title}"></td>
+            </tr>
+            <tr>
+                <th>저자</th>
+                <td th:text="${book.author}"></td>
+            </tr>
+            <tr>
+                <th>출판사</th>
+                <td th:text="${book.publisher}"></td>
+            </tr>
+            <tr>
+                <th>가격</th>
+                <td th:text="${book.price}"></td>
+            </tr>
+            <tr>
+                <th>입고일</th>
+                <td th:text="${book.buy}"></td>
+            </tr>
+            <tr>
+                <th>배송비</th>
+                <td th:text="${book.kind}"></td>
+            </tr>
+            <tr>
+                <th>구입 가능 서점</th>
+                <td th:text="${book.bookstore}"></td>
+            </tr>
+            <tr>
+                <th>수량</th>
+                <td th:text="${book.count}"></td>
+            </tr>
+        </table>
+        <a class="btn btn-primary" th:href="@{/books}">돌아가기</a>
+    </div>
+</div>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    thymeleaf\viewEx06.html<br>
+    <div th:each = "i : ${#numbers.sequence(2, 9)}">
+        <div th:text = "'***' + ${i} + '단***'"></div>
+        <div th:each = "i : ${#numbers.sequence(1, 9)}">
+            <p th:text = "${i + ' * ' + j + ' = ' + i*j}"></p>
+        </div>
+        ----------------------------------<br>
+    </div>
+
+    <!-- 구구단 2-9단 -->
+    <div th:each="num1:${#numbers.sequence(2,9)}">
+        *** [[${num1}]]단 *** <br>
+        <span th:each="num2:${#numbers.sequence(2,9)}">
+        [[${num1}]] * [[${num2}]] = [[${num1*num2}]] <br>
+        </span>
+            <!--<span th:if="${!num1Stat.last}">-->
+            <span th:unless="${num1Stat.last}">
+            ------------- <br>
+        </span>
+    </div>
+
+    <h1>구구단 가로</h1>
+    <table border="1">
+        <thead>
+        <tr>
+            <th th:each="title : ${ #numbers.sequence(2,9)}">[[${ title }]]단</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="su : ${ #numbers.sequence(1,9)}">
+            <td th:each="dan : ${ #numbers.sequence(2,9)}">[[${ dan }]]*[[${ su }]]=[[${ dan * su}]]</td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    thymeleaf\viewEx07.html<br>
+    <a href="/thymeleaf/ex01">예제1 페이지로 이동</a> <br>
+    <!--http://localhost:8080/thymeleaf/ex01-->
+    <a th:href="@{/thymeleaf/ex01}">예제1 페이지로 이동</a> <br>
+
+    <a th:href="@{http://www.thymeleaf.org}">Thymeleaf 홈페이지로 이동</a><br>
+
+    <a th:href="@{/thymeleaf/ex08(param1='abc', param2='xyz')}">ex08로 파라미터 전송</a>
+</body>
+</html>
+

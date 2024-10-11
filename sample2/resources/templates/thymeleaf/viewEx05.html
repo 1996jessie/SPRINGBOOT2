@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    thymeleaf\viewEx05.html<br>
+    <h1>상품 리스트</h1>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>번호</th>
+            <th>상품명</th>
+            <th>상품설명</th>
+            <th>가격</th>
+            <th>가격2</th>
+            <th>등록일</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--        th:each="변수, 상태변수:컬렉션"-->
+        <!--        th:each="변수:컬렉션" 변수Stat-->
+        <!-- <tr th:each="itemDto , status: ${itemDtoList}">
+             <td th:text="${status.count}"></td>
+             <td th:text="${itemDto.itemNm}"></td>
+             <td th:text="${itemDto.itemDetail}"></td>
+             <td th:text="${itemDto.price}"></td>
+             <td th:text="${itemDto.regTime}"></td>
+         </tr>-->
+        <!--<c:if test=""></c:if>-->
+        <tr th:each="itemDto : ${itemDtoList}"> <!--itemDtoStat-->
+
+           <td th:switch="${itemDtoStat.even}">
+               <span th:case="true">짝수</span>
+               <span th:case="false">홀수</span>
+           </td>
+
+            <td th:text="${itemDto.itemNm}"></td>
+            <td th:text="${itemDto.itemDetail}"></td>
+            <td th:text="${itemDto.price}"></td>
+            <!--<td th:text="${itemDto.price}"></td> 2000이상, 2000미만-->
+            <td th:switch = "${itemDto.price >= 2000}">
+                <span th:case = "true">2000 이상</span>
+                <span th:case = "false">2000 미만</span>
+            </td>
+
+            <td th:text="${itemDto.regTime}"></td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>

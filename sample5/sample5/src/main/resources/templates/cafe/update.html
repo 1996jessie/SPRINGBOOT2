@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/mylayout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<th:block layout:fragment="css">
+    <style>
+        .fieldError{
+            color : red;
+            font-size:11pt;
+        }
+    </style>
+</th:block>
+<th:block layout:fragment="script">
+    <script th:inline="javascript">
+
+        $(document).ready(function() {
+            var req = [[ ${cafeBean.req} ]];
+            var reqList = $('input[name=req]');
+            reqList.each(function() {
+                var curr = $(this).val();
+                var result = req.indexOf(curr);
+                if (result != -1) {
+                    $(this).attr('checked', true);
+                }
+            });
+        });
+
+    </script>
+</th:block>
+<body>
+<div class="content" layout:fragment="content">
+    <h2>주문 수정</h2>
+    <form name="myform" method="post" action="/cafe/update" th:object="${cafeBean}">
+        <input type="hidden" class="form-control" th:field="${cafeBean.num}" >
+        <input type="hidden" class="form-control" th:field="${cafeBean.id}" >
+        <div class="form-group">
+            <b>아이디</b>
+            <input type="text" class="form-control" th:field="${cafeBean.id}" disabled>
+        </div>
+
+        <div class="form-group">
+            <b>이름</b>
+            <input type="text" class="form-control" th:field="${cafeBean.name}" placeholder="이름을 입력하세요" >
+            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="fieldError"></p>
+        </div>
+
+
+        <div class="form-group">
+            <b>메뉴</b>
+            <select class="form-control" th:field="${cafeBean.menu}">
+                <option value="">--선택하세요</option>
+                <div class="form-check-inline" th:each="menu : ${menuArr}">
+                    <option th:value="${menu}" th:text="${menu}"></option>
+                </div>
+            </select>
+            <p th:if="${#fields.hasErrors('menu')}" th:errors="*{menu}" class="fieldError"></p>
+        </div>
+
+
+        <div class="form-group">
+            <b>온도</b>
+            <div class="form-control">
+                <div class="form-check-inline">
+                    <span th:each="temp : ${tempArr}">
+                        <input type="radio" class="form-check-input" th:field="*{temp}" th:value="${temp}" th:text="${temp}"> &nbsp&nbsp
+                    </span>
+                </div>
+            </div>
+            <p th:if="${#fields.hasErrors('temp')}" th:errors="*{temp}" class="fieldError"></p>
+        </div>
+
+
+
+        <div class="form-group">
+            <b>수량</b>
+            <div class="form-control">
+                <div class="form-check-inline">
+                    <label th:each="idx : ${#numbers.sequence(1,5)}">
+                        <input type="radio" class="form-check-input" th:field="*{amount}" th:value="${idx}">
+                        <span th:text="${idx}"></span> &nbsp&nbsp
+                    </label>
+                </div>
+                <p th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}" class="fieldError"></p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <b>요청사항</b>
+            <div class="form-control">
+                <div class="form-check-inline">
+                    <span th:each="req : ${reqArr}">
+                        <input type="checkbox" class="form-check-input" th:field="*{req}" th:value="${req}" th:text="${req}"> &nbsp&nbsp
+                    </span>
+                </div>
+            </div>
+            <p th:if="${#fields.hasErrors('req')}" th:errors="*{req}" class="fieldError"></p>
+        </div>
+
+        <button type="submit" id = "submitButton" class="btn btn-primary">주문 수정</button>
+        <button type="reset" class="btn btn-primary">취소</button>
+    </form>
+</div>
+</body>
+</html>

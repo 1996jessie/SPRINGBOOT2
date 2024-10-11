@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+viewEx03.html<br>
+<h1>상품 리스트</h1>
+<table border="1">
+    <thead>
+        <tr>
+            <th>번호</th>
+            <th>상품명</th>
+            <th>상품설명</th>
+            <th>가격</th>
+            <th>등록일</th>
+        </tr>
+    </thead>
+    <tbody>
+<!--        th:each="변수, 상태변수:컬렉션"-->
+<!--        th:each="변수:컬렉션" 변수Stat-->
+       <!-- <tr th:each="itemDto , status: ${itemDtoList}">
+            <td th:text="${status.count}"></td>
+            <td th:text="${itemDto.itemNm}"></td>
+            <td th:text="${itemDto.itemDetail}"></td>
+            <td th:text="${itemDto.price}"></td>
+            <td th:text="${itemDto.regTime}"></td>
+        </tr>-->
+        <tr th:each="itemDto : ${itemDtoList}"> <!--itemDtoStat-->
+            <td th:text="${itemDtoStat.count}"></td>
+            <td th:text="${itemDto.itemNm}"></td>
+            <td th:text="${itemDto.itemDetail}"></td>
+            <td th:text="${itemDto.price}"></td>
+            <td th:text="${itemDto.regTime}"></td>
+        </tr>
+    </tbody>
+</table>
+<br><br>
+
+<div th:each="num : ${#numbers.sequence(1,5,2)}"> <!--numStat-->
+    <p th:text="${num}"></p>
+    <p th:text="${'index:' + numStat.index}"></p>
+    <p th:text="${'count:' + numStat.count}"></p>
+    <p th:text="${'size:' + numStat.size}"></p>
+    <p th:text="${'even:' + numStat.even}"></p>
+    <p th:text="${'odd:' + numStat.odd}"></p>
+    <p th:text="${'first:' + numStat.first}"></p>
+    <p th:text="${'last:' + numStat.last}"></p>
+</div>
+
+<div th:each="num:${arr}">
+    <!-- [[${num}]] -->
+    <p th:text="${numStat.count + ' ' + num}"></p>
+</div>
+
+<div th:each="num:${#numbers.sequence(0,arr.length-1)}">
+    <p th:text="${arr[num]}"></p>
+</div>
+</body>
+</html>
+
+
+
+
+

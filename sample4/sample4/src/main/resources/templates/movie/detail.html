@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/mylayout}">
+
+<div class="content" layout:fragment="content">
+    <div class="col-6" style="margin-left:250px;">
+        <h2>영화 상세 페이지</h2>
+        <table class="table">
+            <tr>
+                <th>번호</th>
+                <td th:text="${movie.num}"></td>
+            </tr>
+            <tr>
+                <th>아이디</th>
+                <td th:text="${movie.id}"></td>
+            </tr>
+            <tr>
+                <th>이름</th>
+                <td th:text="${movie.name}"></td>
+            </tr>
+            <tr>
+                <th>나이</th>
+                <td th:text="${movie.age}"></td>
+            </tr>
+            <tr>
+                <th>좋아하는 장르</th>
+                <td th:text="${movie.genre}"></td>
+            </tr>
+            <tr>
+                <th>즐겨보는 시간대</th>
+                <td th:text="${movie.time}"></td>
+            </tr>
+            <tr>
+                <th>동반관객수</th>
+                <td th:text="${movie.partner}"></td>
+            </tr>
+            <tr>
+                <th>개선사항</th>
+                <td th:text="${movie.memo}"></td>
+            </tr>
+
+        </table>
+        <a class="btn btn-primary" th:href="@{/movie}">돌아가기</a>
+    </div>
+</div>
+</html>

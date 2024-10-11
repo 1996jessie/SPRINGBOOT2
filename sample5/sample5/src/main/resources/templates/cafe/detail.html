@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/mylayout}">
+
+<div class="content" layout:fragment="content">
+    <div class="col-6" style="margin-left:250px;">
+        <h2>주문 상세 페이지</h2>
+        <table class="table">
+            <tr>
+                <th>번호</th>
+                <td th:text="${cafe.num}"></td>
+            </tr>
+            <tr>
+                <th>아이디</th>
+                <td th:text="${cafe.id}"></td>
+            </tr>
+            <tr>
+                <th>이름</th>
+                <td th:text="${cafe.name}"></td>
+            </tr>
+            <tr>
+                <th>온도</th>
+                <td th:text="${cafe.temp}"></td>
+            </tr>
+            <tr>
+                <th>수량</th>
+                <td th:text="${cafe.amount}"></td>
+            </tr>
+            <tr>
+                <th>요청사항</th>
+                <td th:text="${cafe.req}"></td>
+            </tr>
+
+        </table>
+        <a class="btn btn-primary" th:href="@{/cafe}">돌아가기</a>
+    </div>
+</div>
+</html>
